@@ -1,0 +1,6 @@
+import subprocess
+
+from denpa import app
+
+subprocess.run(['npx', 'webpack'])
+app.run(host='0.0.0.0', port=5000)
