@@ -36,9 +36,9 @@ class Transmission:
             if r.status_code == 200:
                 j = r.json()
                 if j['result'] != 'success':
-                    raise ValueError # TODO
+                    raise ValueError  # TODO
                 if j['tag'] != tag:
-                    raise ValueError # TODO
+                    raise ValueError  # TODO
                 return j['arguments']
             elif r.status_code == 409:
                 self.session_id = r.headers['x-transmission-session-id']

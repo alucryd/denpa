@@ -28,6 +28,12 @@ def torrents():
     }
     return jsonify(t.send(method, arguments)['torrents'])
 
+@app.route('/torrents/start', methods=['POST'])
+def start_torrents():
+    method = 'torrent-start'
+    arguments = {}
+    return jsonify(t.send(method, arguments))
+
 
 @app.route('/torrents/<int:id>/start', methods=['POST'])
 def start_torrent(id: int):
@@ -35,6 +41,13 @@ def start_torrent(id: int):
     arguments = {
         'ids': id
     }
+    return jsonify(t.send(method, arguments))
+
+
+@app.route('/torrents/stop', methods=['POST'])
+def stop_torrents():
+    method = 'torrent-stop'
+    arguments = {}
     return jsonify(t.send(method, arguments))
 
 
@@ -46,7 +59,24 @@ def stop_torrent(id: int):
     }
     return jsonify(t.send(method, arguments))
 
-@app.route('/torrents/<int:id>/remove', methods=['POST'])
+
+@app.route('/torrents', methods=['POST'])
+def add_torrent():
+    method = 'torrent-add'
+    arguments = {
+        'filename': request.json['filename']
+    }
+    return jsonify(t.send(method, arguments))
+
+
+@app.route('/torrents', methods=['DELETE'])
+def remove_torrents():
+    method = 'torrent-remove'
+    arguments = {}
+    return jsonify(t.send(method, arguments))
+
+
+@app.route('/torrents/<int:id>', methods=['DELETE'])
 def remove_torrent(id: int):
     method = 'torrent-remove'
     arguments = {

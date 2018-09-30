@@ -7,19 +7,25 @@
         </span>
       </b-col>
       <b-col class="d-flex justify-content-end">
-        <font-awesome-icon icon="play-circle" size="lg" class="m-1 text-primary" v-if="torrent.status === 0" @click="startTorrent()" />
-        <font-awesome-icon icon="stop-circle" size="lg" class="m-1 text-primary" v-else @click="stopTorrent()" />
-        <font-awesome-icon icon="times-circle" size="lg" class="m-1 text-danger" @click="removeTorrent()" />
+        <b-button variant="primary" size="sm" class="m-1" v-if="torrent.status === 0" @click="startTorrent()">
+          <font-awesome-icon icon="play" />
+        </b-button>
+        <b-button variant="primary" size="sm" class="m-1" v-else @click="stopTorrent()">
+          <font-awesome-icon icon="stop" />
+        </b-button>
+        <b-button variant="danger" size="sm" class="m-1" @click="removeTorrent()">
+          <font-awesome-icon icon="times" />
+        </b-button>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
         <span :class="[torrent.rateDownload > 0 ? 'text-primary' : 'text-secondary']">
-          <font-awesome-icon icon="arrow-alt-circle-down" />
+          <font-awesome-icon icon="arrow-circle-down" />
           {{ torrent.rateDownload | prettyBytes }}/s ({{ torrent.downloadedEver | prettyBytes}})
         </span>
         <span :class="[torrent.rateUpload > 0 ? 'text-primary' : 'text-secondary']">
-          <font-awesome-icon icon="arrow-alt-circle-up" />
+          <font-awesome-icon icon="arrow-circle-up" />
           {{ torrent.rateUpload | prettyBytes }}/s ({{ torrent.uploadedEver | prettyBytes}})
         </span>
       </b-col>
@@ -77,17 +83,14 @@ export default {
   methods: {
     startTorrent() {
       axios.post(`torrents/${this.torrent.id}/start`).then(response => {
-        console.log(response.data);
       });
     },
     stopTorrent() {
       axios.post(`torrents/${this.torrent.id}/stop`).then(response => {
-        console.log(response.data);
       });
     },
     removeTorrent() {
-      axios.post(`torrents/${this.torrent.id}/remove`).then(response => {
-        console.log(response.data);
+      axios.delete(`torrents/${this.torrent.id}`).then(response => {
       });
     }
   },
@@ -95,8 +98,7 @@ export default {
     ratio: value => value.toFixed(2),
     prettyBytes: value => prettyBytes(value),
     prettyMs: value => prettyMs(value)
-  },
-  mounted() {}
+  }
 };
 </script>
 
