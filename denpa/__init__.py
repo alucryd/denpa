@@ -12,11 +12,3 @@ t = Transmission(
 )
 
 import denpa.views
-
-# from logicalhrm.blueprints import auth, leave_quotas, leave_types, leaves, users
-
-# app.register_blueprint(auth.bp)
-# app.register_blueprint(leave_quotas.bp)
-# app.register_blueprint(leave_types.bp)
-# app.register_blueprint(leaves.bp)
-# app.register_blueprint(users.bp)
