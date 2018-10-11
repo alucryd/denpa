@@ -4,6 +4,8 @@ import Torrent from './components/Torrent.vue'
 
 import { Button } from 'bootstrap-vue/es/components'
 Vue.use(Button)
+import { FormInput } from 'bootstrap-vue/es/components'
+Vue.use(FormInput)
 import { Layout } from 'bootstrap-vue/es/components'
 Vue.use(Layout)
 import { ListGroup } from 'bootstrap-vue/es/components'
